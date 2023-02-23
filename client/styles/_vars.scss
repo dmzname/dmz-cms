@@ -1,0 +1,14 @@
+:root {
+  --bg-color: #fff;
+  --bg-color-second: #fff;
+  --text-color: #000;
+
+  --white: #fff;
+  --blue: #1976d2;
+}
+
+body.dark-theme {
+  --bg-color: #333;
+  --bg-color-second: #001529;
+  --text-color: #fff;
+}

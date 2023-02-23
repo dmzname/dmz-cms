@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+body {
+  min-width: 320px;
+  background-color: var(--bg-color);
+}
