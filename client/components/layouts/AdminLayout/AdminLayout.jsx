@@ -8,7 +8,7 @@ export function AdminLayout({ children }) {
   return (
     <Layout className={styles.root}>
       <AdminNavigation />
-      <Content>{children}</Content>
+      <Content className={styles.content}>{children}</Content>
     </Layout>
   );
 }

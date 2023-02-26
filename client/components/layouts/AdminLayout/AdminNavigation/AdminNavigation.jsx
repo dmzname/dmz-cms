@@ -25,35 +25,43 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem(<Link href='/admin'>DashBoard</Link>, '/admin', <DashboardOutlined />),
+  getItem(<Link href='/admin-panel'>DashBoard</Link>, '/admin-panel', <DashboardOutlined />),
 
   // Posts
   getItem('Posts', 'sub1', <PushpinOutlined />, [
-    getItem(<Link href='/admin/posts'>All Posts</Link>, '/admin/posts'),
-    getItem(<Link href='/admin/posts/new'>Add Post</Link>, '/admin/posts/new'),
-    getItem(<Link href='/admin/categories'>Categories</Link>, '/admin/categories'),
+    getItem(<Link href='/admin-panel/posts'>All Posts</Link>, '/admin-panel/posts'),
+    getItem(<Link href='/admin-panel/posts/new'>Add Post</Link>, '/admin-panel/posts/new'),
+    getItem(<Link href='/admin-panel/categories'>Categories</Link>, '/admin-panel/categories'),
   ]),
 
   // Media
   getItem('Media', 'sub2', <CameraOutlined />, [
-    getItem(<Link href='/admin/media/library'>Library</Link>, '/admin/media/library'),
-    getItem(<Link href='/admin/media/new'>Add new</Link>, '/admin/media/new'),
+    getItem(<Link href='/admin-panel/media/library'>Library</Link>, '/admin-panel/media/library'),
+    getItem(<Link href='/admin-panel/media/new'>Add new</Link>, '/admin-panel/media/new'),
   ]),
 
   //Comments
-  getItem(<Link href='/admin/comments'>Comments</Link>, '/admin/comments', <MessageOutlined />),
+  getItem(
+    <Link href='/admin-panel/comments'>Comments</Link>,
+    '/admin-panel/comments',
+    <MessageOutlined />,
+  ),
 
   // Users
   getItem('Users', 'sub3', <UserSwitchOutlined />, [
-    getItem(<Link href='/admin/users'>All users</Link>, '/admin/users'),
-    getItem(<Link href='/admin/users/new'>Add new</Link>, '/admin/users/new'),
+    getItem(<Link href='/admin-panel/users'>All users</Link>, '/admin-panel/users'),
+    getItem(<Link href='/admin-panel/users/new'>Add new</Link>, '/admin-panel/users/new'),
   ]),
 
   //Profile
-  getItem(<Link href='/admin/userid'>Profile</Link>, '/admin/userid', <UserOutlined />),
+  getItem(<Link href='/admin-panel/userid'>Profile</Link>, '/admin-panel/userid', <UserOutlined />),
 
   //Customize
-  getItem(<Link href='/admin/customize'>Customize</Link>, '/admin/customize', <BgColorsOutlined />),
+  getItem(
+    <Link href='/admin-panel/customize'>Customize</Link>,
+    '/admin-panel/customize',
+    <BgColorsOutlined />,
+  ),
 ];
 
 export const AdminNavigation = () => {
@@ -69,17 +77,16 @@ export const AdminNavigation = () => {
     process.browser && setCurrent(window.location.pathname);
   }, [process.browser && window.location.pathname]);
 
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
+  const onCollapse = (collapsed) => {
+    setCollapsed(collapsed);
   };
 
   return (
-    <Sider collapsible collapsed={collapsed} onCollapse={() => toggleCollapsed()}>
+    <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <Menu
         selectedKeys={[current]}
         defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4']}
         mode='inline'
-        inlineCollapsed={collapsed}
         items={items}
       />
     </Sider>

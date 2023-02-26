@@ -5,11 +5,11 @@ import { Sun } from '../../../icons/sun';
 import { Moon } from '../../../icons/moon';
 
 export function ThemeSwitch() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { myTheme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <button className={styles.btn} onClick={toggleTheme}>
-      {theme === 'light' ? <Moon /> : <Sun />}
+      {myTheme === 'light' ? <Moon /> : <Sun />}
     </button>
   );
 }
