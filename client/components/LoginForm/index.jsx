@@ -1,9 +1,19 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
+import axios from 'axios';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/auth';
 
-function LoginForm({ onToggleForms }) {
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+function LoginForm() {
+  const [_, setAuth] = useContext(AuthContext);
+  const onFinish = async (values) => {
+    try {
+      const { data } = await axios.post('/signin', values);
+      setAuth(data);
+      localStorage.setItem('auth', JSON.stringify(data));
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Row>

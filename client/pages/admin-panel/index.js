@@ -1,11 +1,13 @@
 import { AdminLayout } from '../../components/layouts/AdminLayout';
-import AuthForms from '../../components/LoginForm';
+import LoginForm from '../../components/LoginForm';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/auth';
 
 function Admin() {
-  let token = false;
+  const [auth] = useContext(AuthContext);
 
-  if (!token) {
-    return <AuthForms />;
+  if (!auth.token) {
+    return <LoginForm />;
   }
 
   return (

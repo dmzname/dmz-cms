@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Controllers
-const { signup } = require("../controllers/auth");
+const { signup, signin } = require("../controllers/auth");
 
 // SendGreed
 const sgMail = require("@sendgrid/mail");
@@ -14,10 +14,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/signup", signup);
-
-router.post("/signin", async (req, res) => {
-  console.log(req.body);
-  res.json({ message: "success" });
-});
+router.post("/signin", signin);
 
 module.exports = router;

@@ -3,9 +3,15 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
+    userdata: {
+      name: "",
+      surname: "",
+      middlename: "",
+    },
     username: {
       type: String,
       require: true,
+      unique: true,
       trim: true,
     },
     email: {

@@ -1,10 +1,11 @@
-import { Layout, Menu } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Button, Layout, Menu } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   BgColorsOutlined,
   CameraOutlined,
   DashboardOutlined,
+  LogoutOutlined,
   MessageOutlined,
   PushpinOutlined,
   UserOutlined,
@@ -12,16 +13,20 @@ import {
 } from '@ant-design/icons';
 import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
 import { useWindowSize } from '../../../../hooks/useWindowSize';
+import styles from './adminnavigation.module.scss';
+import { AuthContext } from '../../../../context/auth';
+import { useRouter } from 'next/router';
 
 const { Sider } = Layout;
 
-function getItem(label, key, icon, children, type) {
+function getItem(label, key, icon, children, type, style) {
   return {
     key,
     icon,
     children,
     label,
     type,
+    style,
   };
 }
 const items = [
@@ -65,9 +70,11 @@ const items = [
 ];
 
 export const AdminNavigation = () => {
+  const router = useRouter();
   const windowSize = useWindowSize();
   const [collapsed, setCollapsed] = useState(false);
   const [current, setCurrent] = useState('');
+  const [_, setAuth] = useContext(AuthContext);
 
   useEffect(() => {
     windowSize.width < 800 ? setCollapsed(true) : setCollapsed(false);
@@ -77,18 +84,28 @@ export const AdminNavigation = () => {
     process.browser && setCurrent(window.location.pathname);
   }, [process.browser && window.location.pathname]);
 
+  const logoutHandler = () => {
+    router.push('/');
+    localStorage.removeItem('auth');
+    setAuth({ user: null, token: '' });
+  };
+
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
   };
 
   return (
-    <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+    <Sider className={styles.sidebar} collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <Menu
         selectedKeys={[current]}
         defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4']}
         mode='inline'
         items={items}
+        style={{ marginBottom: 'auto' }}
       />
+      <Button className={styles.logout} onClick={logoutHandler} icon={<LogoutOutlined />}>
+        Logout
+      </Button>
     </Sider>
   );
 };

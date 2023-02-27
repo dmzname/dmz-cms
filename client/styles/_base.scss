@@ -20,12 +20,17 @@ body {
   color: var(--text-color);
 }
 
-.ant-menu-light.ant-menu-submenu > .ant-menu,
-.ant-layout .ant-layout-sider {
-  background: var(--bg-color-second) !important;
-}
 .ant-menu {
   color: var(--text-color) !important;
   background: var(--bg-color-second) !important;
   border: none !important;
+}
+
+.ant-menu-sub {
+  background-color: #0b1324 !important;
+}
+
+.ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
 }
