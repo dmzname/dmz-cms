@@ -31,6 +31,10 @@ const userSchema = new Schema(
       default: "Subscriber",
     },
     avatar: "",
+    resetCode: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

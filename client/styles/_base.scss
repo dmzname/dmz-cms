@@ -34,3 +34,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.ant-input-prefix {
+  margin-inline-end: 10px !important;
+}
+
+.ant-form-item-explain-error {
+  padding-left: 5px;
+  text-align: left !important;
+}

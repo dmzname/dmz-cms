@@ -1,0 +1,25 @@
+.wrapper {
+  padding-top: 100px;
+}
+
+.root {
+  margin: auto;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 20px;
+}
