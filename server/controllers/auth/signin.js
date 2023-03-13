@@ -1,5 +1,5 @@
-const UserModel = require("../models/userModel");
-const { comparePassword } = require("../utils/hashPassword");
+const UserModel = require("../../models/userModel");
+const { comparePassword } = require("../../utils/hashPassword");
 const jwt = require("jsonwebtoken");
 
 exports.signin = async (req, res) => {

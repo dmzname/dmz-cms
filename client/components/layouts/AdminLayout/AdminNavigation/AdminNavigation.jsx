@@ -1,4 +1,4 @@
-import { Button, Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -66,6 +66,21 @@ const items = [
     <Link href='/admin-panel/customize'>Customize</Link>,
     '/admin-panel/customize',
     <BgColorsOutlined />,
+    null,
+    null,
+    { marginBottom: 'auto' },
+  ),
+
+  //LogOut button
+  getItem(
+    <button className={styles.logout}>Logout</button>,
+    'logout',
+    <LogoutOutlined />,
+    null,
+    null,
+    {
+      backgroundColor: '#230300',
+    },
   ),
 ];
 
@@ -101,11 +116,9 @@ export const AdminNavigation = () => {
         defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4']}
         mode='inline'
         items={items}
-        style={{ marginBottom: 'auto' }}
+        style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+        onClick={({ key }) => key === 'logout' && logoutHandler()}
       />
-      <Button className={styles.logout} onClick={logoutHandler} icon={<LogoutOutlined />}>
-        Logout
-      </Button>
     </Sider>
   );
 };

@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 function ForgotPwForm({ isCode, getDataUser }) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const onFinish = async (values) => {
+  const handleSubmitForm = async (values) => {
     setIsLoading(true);
     try {
       const { data } = await axios.post('/forgot-password', values);
@@ -32,13 +32,13 @@ function ForgotPwForm({ isCode, getDataUser }) {
         name='forgot_pw'
         className={styles.root}
         initialValues={{ remember: true }}
-        onFinish={onFinish}>
+        onFinish={handleSubmitForm}>
         <h2 className={styles.title}>Forgot password</h2>
         <Form.Item
           name='email'
           rules={[{ required: true, message: 'Please input your E-mail!', type: 'email' }]}>
           <Input
-            style={{ padding: '10px' }}
+            className={styles.input}
             prefix={<MailOutlined className='site-form-item-icon' />}
             placeholder='E-mail'
           />
@@ -46,10 +46,9 @@ function ForgotPwForm({ isCode, getDataUser }) {
 
         <Form.Item>
           <Button
-            style={{ margin: 'auto', width: '220px' }}
             type='primary'
             htmlType='submit'
-            className='login-form-button'>
+            className={`${styles['login-button']} login-form-button`}>
             {isLoading && <img src='/images/puff.svg' alt='spinner' className={styles.spinner} />}
             Send me secret
           </Button>

@@ -4,7 +4,7 @@ const router = express.Router();
 const UserModel = require("../models/userModel");
 
 // Controllers
-const { signup, signin, forgotPw, resetPw } = require("../controllers");
+const { signup, signin, forgotPw, resetPw } = require("../controllers/auth");
 
 // SendGreed
 const sgMail = require("@sendgrid/mail");

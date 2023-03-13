@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
   });
 
   axios.defaults.baseURL = process.env.NEXT_PUBLIC_API;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${auth?.token}`;
 
   useEffect(() => {
     const userFromLS = JSON.parse(localStorage.getItem('auth'));

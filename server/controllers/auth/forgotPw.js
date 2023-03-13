@@ -1,4 +1,4 @@
-const UserModel = require("../models/userModel");
+const UserModel = require("../../models/userModel");
 const { nanoid } = require("nanoid");
 const sgMail = require("@sendgrid/mail");
 

@@ -7,8 +7,10 @@ import Link from 'next/link';
 import styles from './loginform.module.scss';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 
 function LoginForm() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [_, setAuth] = useContext(AuthContext);
 
@@ -16,6 +18,9 @@ function LoginForm() {
     setIsLoading(true);
     try {
       const { data } = await axios.post('/signin', values);
+      if (data.user.username === 'root') {
+        router.push('/admin-panel/userid');
+      }
       setAuth(data);
       localStorage.setItem('auth', JSON.stringify(data));
       setIsLoading(false);
